@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+
+<title>Contact Us - Boys Sports Clothing</title>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(#fff,#ffd6d6);
+    overflow-y: hidden;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+}
+
+.contact-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contact-section h2 {
+    color: #555;
+    font-size: 35px;
+}
+
+.contact-section p {
+    color: #777;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.contact-form {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 20px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    height: 120px;
+}
+
+.contact-form input[type="submit"] {
+    display: inline-block;
+    font-size: 15px;
+    background: #ff523b;
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+
+.contact-form input[type="submit"]:hover {
+    background: #563434;
+}
+
+.error-message {
+    color: red;
+    font-size: 15px;
+    margin-top: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="contact-section">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, suggestions, or concerns, please feel free to contact us using the form below. We'll get back to you as soon as possible.</p>
+    </div>
+
+    <div class="contact-form">
+        <form id="contactForm" action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <div id="nameError" class="error-message"></div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error-message"></div>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <div id="messageError" class="error-message"></div>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        let isValid = true;
+        document.querySelectorAll('.error-message').forEach(function(element) {
+            element.textContent = '';
+        });
+
+       
+        if (name === '') {
+            document.getElementById('nameError').textContent = 'Name is required';
+            isValid = false;
+        }
+
+        if (email === '') {
+            document.getElementById('emailError').textContent = 'Email is required';
+            isValid = false;
+        } else if (!isValidEmail(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            isValid = false;
+        }
+
+        if (message === '') {
+            document.getElementById('messageError').textContent = 'Message is required';
+            isValid = false;
+        }
+
+        
+        if (isValid) {
+            const formData = {
+                name: name,
+                email: email,
+                message: message
+            };
+            localStorage.setItem('formData', JSON.stringify(formData));
+            alert('Form submitted successfully. Thank you for your message!');
+            contactForm.reset();
+        }
+    });
+
+   
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+});
+</script>
+
+</body>
+</html>
