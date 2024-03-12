@@ -48,7 +48,7 @@
                         <span onclick="register()">Register</span>
                         <hr class="indicator" id="Indicator">
                     </div>
-                    <form action="" id="Loginform"  onsubmit="return validateLoginForm()">
+                    <form action="index.html" id="Loginform"  onsubmit="return validateLoginForm()">
                         <input type="text" placeholder="Username">
                         <input type="password" placeholder="Password">
                         <button type="submit" class="btn">Login</button>
@@ -103,99 +103,49 @@
 </div>
 <script >
 
-// var Loginform=document.getElementById('Loginform');
-// var Regform=document.getElementById('Regform');
-// var Indicator=document.getElementById('Indicator');
+var Loginform=document.getElementById('Loginform');
+var Regform=document.getElementById('Regform');
+var Indicator=document.getElementById('Indicator');
 
-// function register(){
-//     Regform.style.transform="translateX(0px)";
-//     Loginform.style.transform="translateX(0px)";
-//     Indicator.style.transform="translateX(100px)";
-// }
-// function login(){
-//     Regform.style.transform="translateX(300px)";
-//     Loginform.style.transform="translateX(300px)";
-//     Indicator.style.transform="translateX(0px)";
-// }
-
-// function validateRegistrationForm() {
-//         var username = document.getElementById('Regform').querySelector('input[type="text"]').value;
-//         var email = document.getElementById('Regform').querySelector('input[type="email"]').value;
-//         var password = document.getElementById('Regform').querySelector('input[type="password"]').value;
-
-//         // Checking if username, email, and password are not empty
-//         if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
-//             alert("Please fill in all fields.");
-//             return false;
-//         }
-
-//         // Email validation regex pattern
-//         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-//         // Checking if email matches the pattern
-//         if (!emailPattern.test(email)) {
-//             alert("Please enter a valid email address.");
-//             return false;
-//         }
-
-//         // If validation passes, return true
-//         return true;
-//     }
-//     function validateLoginForm() {
-//         var username = document.getElementById('Loginform').querySelector('input[type="text"]').value;
-//         var password = document.getElementById('Loginform').querySelector('input[type="password"]').value;
-
-//         // Checking if username and password are not empty
-//         if (username.trim() === "" || password.trim() === "") {
-//             alert("Please fill in all fields.");
-//             return false;
-//         }
-
-//         // If validation passes, return true
-//         return true;
-//     }
-document.addEventListener("DOMContentLoaded", function() {
-    var Loginform=document.getElementById('Loginform');
-    var Regform=document.getElementById('Regform');
-    var Indicator=document.getElementById('Indicator');
-
-    function register(){
-        Regform.style.transform="translateX(0px)";
-        Loginform.style.transform="translateX(0px)";
-        Indicator.style.transform="translateX(100px)";
-    }
-
-    function login(){
-        Regform.style.transform="translateX(300px)";
-        Loginform.style.transform="translateX(300px)";
-        Indicator.style.transform="translateX(0px)";
-    }
-    function validateRegistrationForm() {
-    var username = document.getElementById('Regform').querySelector('input[type="text"]').value;
-    var email = document.getElementById('Regform').querySelector('input[type="email"]').value;
-    var password = document.getElementById('Regform').querySelector('input[type="password"]').value;
-
-    if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
-        alert("Please fill in all fields.");
-        return false;
-    }
-
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
-        return false;
-    }
-    var userData = {
-        username: username,
-        email: email,
-        password: password
-    };
-    localStorage.setItem('userData', JSON.stringify(userData));
-    alert("Registration successful. You can now log in.");
-    login();
-    return false; 
+function register(){
+    Regform.style.transform="translateX(0px)";
+    Loginform.style.transform="translateX(0px)";
+    Indicator.style.transform="translateX(100px)";
+}
+function login(){
+    Regform.style.transform="translateX(300px)";
+    Loginform.style.transform="translateX(300px)";
+    Indicator.style.transform="translateX(0px)";
 }
 
+function validateRegistrationForm() {
+        var username = document.getElementById('Regform').querySelector('input[type="text"]').value;
+        var email = document.getElementById('Regform').querySelector('input[type="email"]').value;
+        var password = document.getElementById('Regform').querySelector('input[type="password"]').value;
+
+        // Checking if username, email, and password are not empty
+        if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
+            alert("Please fill in all fields.");
+            return false;
+        }
+
+        // Email validation regex pattern
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Checking if email matches the pattern
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+        var userData = {
+           username: username,
+           email: email,
+           password: password
+       };
+       localStorage.setItem('userData', JSON.stringify(userData));
+       alert("Registration successful. You can now log in.");
+        return true;
+    }
     function validateLoginForm() {
         var username = document.getElementById('Loginform').querySelector('input[type="text"]').value;
         var password = document.getElementById('Loginform').querySelector('input[type="password"]').value;
@@ -207,17 +157,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var userData = JSON.parse(localStorage.getItem('userData'));
 
-        if (userData && userData.username === username && userData.password === password) {
-            alert("Login successful. Redirecting to home page.");
-            return true; 
-        } else {
+         if (userData && userData.username === username && userData.password === password) {
+             alert("Login successful. Redirecting to home page.");
+             return true; 
+         } else {
             alert("Invalid username or password.");
             return false; 
-        }
+         }
+
+        return true;
     }
-    document.getElementById('Regform').addEventListener('submit', validateRegistrationForm);
-    document.getElementById('Loginform').addEventListener('submit', validateLoginForm);
-});
+
 </script>
 
 
